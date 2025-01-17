@@ -1,20 +1,24 @@
 const mongoose = require("mongoose")
 
-const busSchema = new mongoose.Schema({
-    "bus_number":{
+const routeSchema = new mongoose.Schema({
+    start_location:{
         type: String,
-        unique: true
-    },
-    "capacity":{
-        type:Number,
         require: true
     },
-    operator: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Operator"
+    end_location:{
+        type:String,
+        require:true,
     },
-    route:{
+    distance:{
+        type: Number,
+        require: true,
+    },
+    buses:[{
         type: mongoose.Schema.ObjectId,
-        ref: "Routes"
-    }
-})
+        ref: "buses",
+    },
+]
+});
+
+const RouteModel = mongoose.model("routes", routeSchema)
+module.exports = {RouteModel};
