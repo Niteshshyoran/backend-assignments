@@ -1,6 +1,6 @@
 const express = require ("express");
 const route = express.Router();
-const operators= require("../models/operator")
+const Operator= require("../models/operator")
 
 route.post('/add',async(req,res)=>{
     try{
@@ -10,4 +10,6 @@ route.post('/add',async(req,res)=>{
     }catch(error){
         res.status(500).json({message:`Error: ${error}`})
     }
-})
+});
+
+module.exports = route;
