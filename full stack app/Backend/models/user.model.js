@@ -5,9 +5,16 @@ const userSchema = new mongoose.Schema({
     email: {type: String, require:true, unique:true},
     pass: {type: String, require:true}
 },{
-    versionKey: false
+    versionKey: false,
+    toJSON: {virtuals:true}
 }
 )
+
+userSchema.virtual("notes",{
+    ref: "note",
+    localField: "_id",
+    foreignField: "userId"
+})
 
 const UserModel = mongoose.model("user", userSchema)
 
